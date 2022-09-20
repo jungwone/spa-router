@@ -1,0 +1,28 @@
+#nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#nav a {
+  padding: 1rem;
+  color: dodgerblue;
+}
+
+#nav a.active {
+  color: #03488c;
+  font-weight: bold;
+}
+
+.users {
+  list-style: none;
+}
+
+.users li {
+  padding: 0.25rem;
+  font-size: 20px;
+}
+
+p {
+  font-size: 20px;
+}
