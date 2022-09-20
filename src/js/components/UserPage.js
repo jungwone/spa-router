@@ -1,9 +1,12 @@
 import Component from "./Component.js";
 
 export default class UserPage extends Component {
+  setup() {
+    this._props.users.sort();
+  }
+
   getTemplate() {
     const { users } = this._props;
-    users.sort();
 
     return `
         <div style="text-align: center">
