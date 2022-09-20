@@ -1,3 +1,11 @@
+import AboutPage from "./components/AboutPage.js";
+import HomePage from "./components/HomePage.js";
+import NotFoundPage from "./components/NotFoundPage.js";
+import UserPage from "./components/UserPage.js";
+import { $ } from "./helper.js";
+import { users } from "./data.js";
+import Header from "./components/Header.js";
+
 const route = () => {
   const nav = document.querySelector("#nav");
 
@@ -9,21 +17,23 @@ const route = () => {
 };
 
 const routes = {
-  404: "/src/pages/404.html",
-  "/": "/src/pages/index.html",
-  "/about": "/src/pages/about.html",
-  "/users": "/src/pages/users.html",
+  404: NotFoundPage,
+  "/": HomePage,
+  "/about": AboutPage,
+  "/users": UserPage,
 };
 
 const handleLocation = async () => {
   const path = window.location.pathname;
-  const route = routes[path] || routes[404];
-  const html = await fetch(route).then((data) => data.text());
-  document.getElementById("main-page").innerHTML = html;
+
+  new Header($("#nav"), { path });
+
+  const element = routes[path] || routes["404"];
+  new element($("#main-page"), { users });
 };
 
 window.onpopstate = handleLocation;
 window.onload = () => {
-  // handleLocation();
-  // route();
+  handleLocation();
+  route();
 };
